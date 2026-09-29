@@ -18,7 +18,7 @@ RUN rustc \
       rust/core/src/bin/plai-healthcheck.rs
 
 
-FROM paddlepaddle/paddle:3.2.2
+FROM paddlepaddle/paddle:3.2.2-gpu-cuda11.8-cudnn8.9
 
 ARG APP_VERSION=dev
 ARG SOURCE_URL=""
@@ -41,7 +41,7 @@ RUN python -m pip install --no-cache-dir --disable-pip-version-check -r /tmp/req
     && rm -f /tmp/requirements.txt
 
 RUN paddlex --install paddle2onnx -y \
-    && paddlex --install hpi-cpu -y
+    && paddlex --install hpi-gpu -y
 
 COPY src/common/ /app/
 COPY src/ocr/ /app/

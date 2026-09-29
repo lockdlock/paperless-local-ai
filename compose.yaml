@@ -14,6 +14,7 @@ services:
   ocr-service:
     image: ${IMAGE_PREFIX:-ghcr.io/lucaperl/paperless-local-ai}-ocr:${APP_VERSION:-stable}
     restart: unless-stopped
+    gpus: all
     environment:
       HOME: /ocr-data
       PADDLE_PDX_CACHE_HOME: /ocr-data/.paddlex

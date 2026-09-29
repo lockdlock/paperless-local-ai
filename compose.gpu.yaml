@@ -1,0 +1,10 @@
+#docker compose -f compose.yaml -f compose.gpu.yaml up -d --build
+services:
+  ocr-service:
+    build:
+      context: .
+      dockerfile: docker/ocr.Dockerfile
+      args:
+        APP_VERSION: gpu
+    image: paperless-local-ai-ocr:gpu
+    gpus: all
