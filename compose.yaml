@@ -1,3 +1,7 @@
+include:
+  - compose.gpu.yaml
+  - compose.ollama-openai.yaml
+
 name: paperless-local-ai
 
 x-core-image: &core-image
