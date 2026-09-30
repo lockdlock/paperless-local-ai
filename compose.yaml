@@ -1,5 +1,4 @@
 include:
-  - compose.gpu.yaml
   - compose.ollama-openai.yaml
 
 name: paperless-local-ai
@@ -16,6 +15,13 @@ x-core-volumes: &core-volumes
 
 services:
   ocr-service:
+    build:
+      context: .
+      dockerfile: docker/ocr.Dockerfile
+      args:
+        APP_VERSION: ${APP_VERSION:-stable}
+      entitlements:
+        - device
     image: ${IMAGE_PREFIX:-ghcr.io/lucaperl/paperless-local-ai}-ocr:${APP_VERSION:-stable}
     restart: unless-stopped
     gpus: all
